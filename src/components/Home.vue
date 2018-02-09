@@ -7,8 +7,8 @@
             <span class="personName">王大力</span>
         </div>
       </div>
-
-  </div>
+      <router-view/>
+  </div>  
 </template>
 
 <script>
