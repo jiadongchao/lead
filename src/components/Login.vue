@@ -1,8 +1,8 @@
 <template>
   <div class="login">
-    <div class="header">
+    <!-- <div class="header">
         <h1>诉讼领导办公系统</h1>
-    </div>
+    </div> -->
     <div class="formWrap">
         <h2 class="formTitle">登录</h2>
         <el-form :label-position="'right'" label-width="120px" :model="formInfo">

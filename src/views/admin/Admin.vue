@@ -3,7 +3,6 @@
       <div class="header">
           <h1>诉讼领导办公系统--管理员</h1>
       </div>
-
   </div>
 </template>
 

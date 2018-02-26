@@ -2,7 +2,7 @@
   <div class="home">
       <div class="header">
         <h1>诉讼领导办公系统</h1>
-        <div class="personInfo">
+        <div class="personInfo" v-if="personShow">
             <img class="headPic" src="../assets/logo.png">
             <span class="personName">王大力</span>
         </div>
@@ -16,7 +16,15 @@ export default {
   name: 'Home',
   data () {
     return {
-      msg: 'Welcome to Home'
+      personShow :false,
+    }
+  },
+  mounted(){
+    this.loadComponents();
+  },
+  methods:{
+    loadComponents :function(){
+      this.$router.push('/Login')
     }
   }
 }
@@ -24,9 +32,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.header{border-bottom: 2px solid blue;height: 50px;}
-.home h1{display: inline-block;margin: 0;font-size: 24px;line-height: 30px;height: 30px;padding-left:20px; }
-.personInfo{display: inline-block;float:right;width: 200px;}
+.home{height: 100%}
+.header{height: 50px;}
+.home h1{display: inline-block;margin: 0;font-size: 24px;line-height: 50px;height: 50px;padding-left:20px; }
+.personInfo{display: inline-block;float:right;width: 200px;height: 50px;}
 .headPic{width:30px;height: 30px;vertical-align: middle; }
-.personName{line-height: 30px;height: 30px;}
+.personName{line-height: 50px;height: 50px;}
 </style>

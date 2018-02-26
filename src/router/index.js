@@ -14,33 +14,19 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Login',
-      component: Login
+      redirect: '/Home'
     },
     {
       path: '/Home',
       name: 'Home',
-      component: Home
+      component: Home,
+      children:[
+        { path: '/Login', component: Login},
+        { path: '/Person', component: Person},
+        { path: '/Lead', component: Lead},
+        { path: '/Admin', component: Admin},
+      ]
     },
-    {
-      path: '/Login',
-      name: 'Login',
-      component: Login
-    },   
-     {
-      path: '/Person',
-      name: 'Person',
-      component: Person
-    },  
-    {
-     path: '/Lead',
-     name: 'Lead',
-     component: Lead
-   },   
-   {
-    path: '/Admin',
-    name: 'Admin',
-    component: Admin
-  }
+
   ]
 })
