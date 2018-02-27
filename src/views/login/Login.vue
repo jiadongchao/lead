@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import {setCookie,getCookie} from '../../assets/js/cookie.js'
 export default {
   name: "Login",
     data() {
@@ -32,8 +33,15 @@ export default {
         }
       };
     },
+    mounted(){
+        // 页面挂载获取cookie，如果存在用户名，的cookie，则跳转到lead页
+        if(getCookie('username')){
+            this.$router.push('/lead');
+        }
+
+    },
     methods:{
-        loginFn(formInfo){
+        loginFn : function(formInfo){
             if(formInfo.psw == 123){
                 let type = formInfo.account
                 switch(type){
@@ -44,12 +52,21 @@ export default {
                     this.$router.push('/Admin');
                     break;
                      case 'lead':
-                    this.$router.push('/lead');
+
+                    setCookie('username',this.formInfo.account,1000*60);
+                    this.sendUsername();
+                    setTimeout(function(){
+                        this.$router.push('/lead');
+                    }.bind(this),1000)
+
                     break;
                     default:
                     console.log("def")
                 }
             }
+        },
+        sendUsername:function (){
+            this.$emit("listenTochildEvent",this.formInfo.account);
         }
     }
   

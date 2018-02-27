@@ -102,7 +102,61 @@
             </div>
         </el-tab-pane>
         <el-tab-pane label="绩效考核">
-            绩效考核222
+             <!-- 工具栏 -->
+            <div class="toolsBar">
+                <el-date-picker
+                    v-model="cheackDate"
+                    type="daterange"
+                    range-separator="至"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期">
+                </el-date-picker>
+
+                <el-select v-model="court" placeholder="请选择">
+                    <el-option
+                    v-for="item in optionsCourt"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                    </el-option>
+                </el-select>
+                <el-select v-model="courtBranch" placeholder="请选择部门">
+                    <el-option
+                    v-for="item in optionsCourt"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                    </el-option>
+                </el-select>
+                <el-select v-model="group" placeholder="请选择小组">
+                    <el-option
+                    v-for="item in optionsCourt"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                    </el-option>
+                </el-select>
+                
+                <el-button class="btnData" type="primary" icon="el-icon-search" >查询</el-button>
+                <el-input class="inputUser" v-model="inputUser" placeholder="请输入内容"></el-input>
+
+                <el-table :data="tableData3" style="width: 100%" >
+                    <el-table-column prop="date" label="序号" width="150" align="center" fixed> </el-table-column>
+                    <el-table-column prop="date" label="考核人员" width="150" align="center"> </el-table-column>
+                    <el-table-column prop="date" label="部门(小组)" width="150" align="center"> </el-table-column>
+                    <el-table-column prop="date" label="考核项目" width="150" align="center"> </el-table-column>
+                    <el-table-column label="实际得分" align="center">                      
+                        <el-table-column prop="province" label="第一周" width="120" align="center"></el-table-column>
+                        <el-table-column prop="city" label="第二周" width="120" align="center"></el-table-column>
+                        <el-table-column prop="address" label="第三周" width="120" align="center"></el-table-column>
+                        <el-table-column prop="zip" label="第四周" width="120" align="center"></el-table-column>                        
+                    </el-table-column>
+                    <el-table-column prop="date" label="最终得分" width="150" align="center"> </el-table-column>
+                    <el-table-column prop="date" label="综合评分" width="auto" align="center"> </el-table-column>
+
+
+                </el-table>
+            </div>
         </el-tab-pane>
     </el-tabs>
 
@@ -139,6 +193,22 @@ export default{
             checked2:"",
             checked3:"",
             checked4:"",
+            inputUser:"",
+             tableData3: [{
+                date: '2016-05-03',
+                name: '王小虎',
+                province: '上海',
+                city: '普陀区',
+                address: '上海市普陀区金沙江路 1518 弄',
+                zip: 200333
+                },{
+                date: '2016-05-03',
+                name: '王小虎',
+                province: '上海',
+                city: '普陀区',
+                address: '上海市普陀区金沙江路 1518 弄',
+                zip: 200333
+                }]
 
         }
         
@@ -163,5 +233,7 @@ export default{
 .contentItem_span{font-size: 22px;text-align: center}
 .contentItem_li_4{display: inline-block;width: 20.5%;background: #409EFF;padding-left:20px; margin:0 50px 30px 0;float: left;height: 150px;}
 
+.inputUser{width: 300px;float: right;margin-right:20px; }
 
+.el-table{margin-top: 30px;}
 </style>
