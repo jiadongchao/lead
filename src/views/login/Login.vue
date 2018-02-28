@@ -36,7 +36,7 @@ export default {
     mounted(){
         // 页面挂载获取cookie，如果存在用户名，的cookie，则跳转到lead页
         if(getCookie('username')){
-            this.$router.push('/lead');
+            this.$router.push('/'+getCookie('username'));
         }
 
     },
@@ -46,12 +46,23 @@ export default {
                 let type = formInfo.account
                 switch(type){
                     case 'person':
-                    this.$router.push('/Person');
+                    
+                    setCookie('username',this.formInfo.account,1000*60);
+                    this.sendUsername();
+                    setTimeout(function(){
+                        this.$router.push('/Person');
+                    }.bind(this),1000)
                     break;
                     case 'admin':
-                    this.$router.push('/Admin');
+
+                    setCookie('username',this.formInfo.account,1000*60);
+                    this.sendUsername();
+                    setTimeout(function(){
+                        this.$router.push('/Admin');
+                    }.bind(this),1000)
+
                     break;
-                     case 'lead':
+                    case 'lead':
 
                     setCookie('username',this.formInfo.account,1000*60);
                     this.sendUsername();

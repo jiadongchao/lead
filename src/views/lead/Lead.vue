@@ -219,12 +219,12 @@ export default{
 
 <style>
 .lead{height: 100%;position: relative;padding:30px 50px 0 50px;}
-.el-tabs__item{font-size: 20px;}
-.el-date-editor{margin-right: 20px;}
-.el-select{margin-right: 20px;}
-.btnData{float:right}
-.checkBoxItem{width: 100%;height: 35px;text-align: center}
-.el-checkbox+.el-checkbox{margin-left: 0px;}
+.lead .el-tabs__item{font-size: 20px;}
+.lead .el-date-editor{margin-right: 20px;}
+.lead .el-select{margin-right: 20px;}
+.lead .btnData{float:right}
+.lead .checkBoxItem{width: 100%;height: 35px;text-align: center}
+.lead .el-checkbox+.el-checkbox{margin-left: 0px;}
 
 .contentItem_h3{font-size: 24px;padding: 30px 0;}
 .contentItem_ul{overflow: hidden; color: #ffffff}
@@ -235,5 +235,5 @@ export default{
 
 .inputUser{width: 300px;float: right;margin-right:20px; }
 
-.el-table{margin-top: 30px;}
+.lead .el-table{margin-top: 30px;}
 </style>

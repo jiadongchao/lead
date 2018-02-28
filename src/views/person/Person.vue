@@ -23,7 +23,9 @@
             </ul>
         </div>
         <div class="echartsWrap">
-            <div class="echarts" id="myChart" :style="{width: '300px', height: '300px'}"></div>
+            <div class="echartsItem" id="myChart1" ></div>
+            <div class="echartsItem" id="myChart2" ></div>
+            <div class="echartsItem" id="myChart3" ></div>
         </div>
     </div>
   </div>
@@ -32,14 +34,40 @@
 // 引入基本模板
 let echarts = require('echarts/lib/echarts')
 // 引入柱状图组件
-require('echarts/lib/chart/bar')
+require('echarts/lib/chart/pie')
 // 引入提示框和title组件
 require('echarts/lib/component/tooltip')
 require('echarts/lib/component/title')
 export default{
     data(){
         return {
-
+            option:{
+                title : {
+                    text: '用户访问来源',
+                    subtext: '',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                calculable : true,
+                series : [
+                    {
+                        name:'访问来源',
+                        type:'pie',
+                        radius : '55%',
+                        center: ['50%', '60%'],
+                        data:[
+                            {value:335, name:'直接访问'},
+                            {value:310, name:'邮件营销'},
+                            {value:234, name:'联盟广告'},
+                            {value:135, name:'视频广告'},
+                            {value:1548, name:'搜索引擎'}
+                        ]
+                    }
+                ]
+            }
         }
     },
     mounted(){
@@ -48,21 +76,13 @@ export default{
     methods:{
         drawLine() {
             // 基于准备好的dom，初始化echarts实例
-            let myChart = echarts.init(document.getElementById('myChart'))
+            let myChart1 = echarts.init(document.getElementById('myChart1'))
+            let myChart2 = echarts.init(document.getElementById('myChart2'))
+            let myChart3 = echarts.init(document.getElementById('myChart3'))
             // 绘制图表
-            myChart.setOption({
-                title: { text: 'ECharts 入门示例' },
-                tooltip: {},
-                xAxis: {
-                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-                },
-                yAxis: {},
-                series: [{
-                name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
-                }]
-            });
+            myChart1.setOption(this.option);
+            myChart2.setOption(this.option);
+            myChart3.setOption(this.option);
         }  
     }
 }
@@ -84,5 +104,6 @@ export default{
 .contentItem_li_3{display: inline-block;width: 28%;background: #409EFF;padding-left:20px;  margin:0 50px 30px 0;float: left;height: 250px;}
 .contentItem_span{font-size: 22px;text-align: center;padding-top: 45px}
 
-.echarts{width: 300px;height: 200px;}
+.echartsWrap{padding-top: 30px;}
+.echartsItem{width: 300px;height: 200px;display: inline-block;}
 </style>
