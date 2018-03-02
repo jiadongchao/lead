@@ -226,6 +226,7 @@ export default{
 .lead .checkBoxItem{width: 100%;height: 35px;text-align: center}
 .lead .el-checkbox+.el-checkbox{margin-left: 0px;}
 
+.toolsBar{padding-top: 20px;}
 .contentItem_h3{font-size: 24px;padding: 30px 0;}
 .contentItem_ul{overflow: hidden; color: #ffffff}
 .contentItem_h4{font-size: 18px;padding: 30px 0;}

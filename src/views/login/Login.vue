@@ -10,10 +10,10 @@
                 <el-input v-model="formInfo.account" placeholder="admin / lead / person"></el-input>
             </el-form-item>
             <el-form-item label="密码" class="formInput" >
-                <el-input v-model="formInfo.psw" placeholder="123" type="password"></el-input>
+                <el-input v-model="formInfo.psw" placeholder="123" type="password" ></el-input>
             </el-form-item>
 
-            <el-button class="loginBtn" type="primary" size="medium" @click="loginFn(formInfo)">登录</el-button>
+            <el-button class="loginBtn" type="primary" size="medium"  @click="loginFn(formInfo)">登录</el-button>
 
         </el-form>
     </div>
