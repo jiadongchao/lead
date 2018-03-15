@@ -10,7 +10,7 @@
                 <el-input v-model="formInfo.account" placeholder="admin / lead / person"></el-input>
             </el-form-item>
             <el-form-item label="密码" class="formInput" >
-                <el-input v-model="formInfo.psw" placeholder="123" type="password" ></el-input>
+                <el-input v-model="formInfo.pwd" placeholder="123" type="password" ></el-input>
             </el-form-item>
 
             <el-button class="loginBtn" type="primary" size="medium"  @click="loginFn(formInfo)">登录</el-button>
@@ -29,55 +29,62 @@ export default {
       return {
         formInfo: {
           account: '',
-          psw: '',
-        }
+          pwd: '',
+        },
+        perName:"",
+        loginURL:'http://localhost:3000/'
       };
     },
     mounted(){
         // 页面挂载获取cookie，如果存在用户名，的cookie，则跳转到lead页
-        if(getCookie('username')){
-            this.$router.push('/'+getCookie('username'));
+        if(getCookie('usertype')){
+            this.$router.push('/'+getCookie('usertype'));
         }
 
     },
     methods:{
-        loginFn : function(formInfo){
-            if(formInfo.psw == 123){
-                let type = formInfo.account
-                switch(type){
-                    case 'person':
-                    
-                    setCookie('username',this.formInfo.account,1000*60);
-                    this.sendUsername();
-                    setTimeout(function(){
-                        this.$router.push('/Person');
-                    }.bind(this),1000)
-                    break;
-                    case 'admin':
-
-                    setCookie('username',this.formInfo.account,1000*60);
-                    this.sendUsername();
-                    setTimeout(function(){
-                        this.$router.push('/Admin');
-                    }.bind(this),1000)
-
-                    break;
-                    case 'lead':
-
-                    setCookie('username',this.formInfo.account,1000*60);
-                    this.sendUsername();
-                    setTimeout(function(){
-                        this.$router.push('/lead');
-                    }.bind(this),1000)
-
-                    break;
-                    default:
-                    console.log("def")
+        loginFn :function(formInfo){
+            this.$http.post(this.loginURL,this.formInfo).then(response => {
+            // success callback
+                console.log(response)
+                if(response.data.code==1){
+                    var type = response.data.type;
+                    this.perName= response.data.name;
+                    switch(type){
+                        case 1:
+                        setTimeout(function(){
+                            this.$router.push('/Person');
+                        }.bind(this),100)
+                        setCookie('usertype','Person',1000*60);
+                        break;
+                        case 2:
+                        setTimeout(function(){
+                            this.$router.push('/Admin');
+                        }.bind(this),100)
+                        setCookie('usertype','Admin',1000*60);
+                        break;
+                        case 3:
+                        setTimeout(function(){
+                            this.$router.push('/lead');
+                        }.bind(this),100)
+                        setCookie('usertype','lead',1000*60);
+                        break;
+                        default:
+                        console.log("error")
+                    }
+                    setCookie('username',this.perName,1000*60);
+                    this.sendUsername();                    
+                }else{
+                    console.log("请输入正确的用户名密码！")
                 }
-            }
+                
+            }, response => {
+            // error callback
+                console.log(response)
+            })
         },
         sendUsername:function (){
-            this.$emit("listenTochildEvent",this.formInfo.account);
+            this.$emit("listenTochildEvent",this.perName);
         }
     }
   
